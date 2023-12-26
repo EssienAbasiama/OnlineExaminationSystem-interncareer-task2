@@ -55,11 +55,10 @@ public class AuthController {
                 model.addAttribute("error", "Incorrect Username Or Password");
                 return "login";
             } else {
-
                 // ToDo: Check If User Account IS Verified
-                int verified = userRepository.isVerified(getEmailFromDatabase);
+                boolean verified = userRepository.isVerified(getEmailFromDatabase);
                 // Check If Account is Verified
-                if (verified != 1) {
+                if (!verified) {
                     String msg = "This Account is not yet Verified, Kindly Check email and Verify Account";
                     model.addAttribute("error", msg);
                     return "login";
@@ -73,9 +72,9 @@ public class AuthController {
                 session.setAttribute("authenticated", true);
                 model.addAttribute("SUCCESS", "Login Successful");
                 if (user.getRole() == Role.TEACHER) {
-                    return "redirect:/app/teacher/dashboard";
+                    return "redirect:/teacherDashboard";
                 } else {
-                    return "redirect:/app/student/dashboard";
+                    return "redirect:/student/dashboard";
                 }
             }
         } else {
@@ -137,10 +136,9 @@ public class AuthController {
         return modelAndView;
     }
 
-    @PostMapping("reset-password")
+    @PostMapping("/reset-password")
     public ModelAndView resetPassWord(@RequestParam("token") String token,
                                       @RequestParam("code") String code,
-                                      @RequestParam("email") String email,
                                       @RequestParam("password") String password,
                                       @RequestParam("confirm_password") String confirm_password
                                       ) {
@@ -154,7 +152,6 @@ public class AuthController {
             changePasswordPage.addObject("confirm_pass", "The confirm Field is Required");
             return changePasswordPage;
         }
-
         // TODO: CHECK FOR PASSWORD MATCH
         if (password.equals(confirm_password)) {
             changePasswordPage.addObject("passwordMisMatch", "Password do not Match");

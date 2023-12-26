@@ -1,3 +1,6 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%--<%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>--%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,10 +10,10 @@
       content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
       name="viewport"
     />
-    <link rel="icon" href="../assets/img/icon.ico" type="image/x-icon" />
+    <link rel="icon" href="img/icon.ico" type="image/x-icon" />
 
     <!-- Fonts and icons -->
-    <script src="../assets/js/webfont.min.js"></script>
+    <script src="js/webfont.min.js"></script>
     <script>
       WebFont.load({
         google: { families: ["Lato:300,400,700,900"] },
@@ -22,7 +25,7 @@
             "Font Awesome 5 Brands",
             "simple-line-icons",
           ],
-          urls: ["../assets/css/fonts.min.css"],
+          urls: ["css/fonts.min.css"],
         },
         active: function () {
           sessionStorage.fonts = true;
@@ -31,11 +34,11 @@
     </script>
 
     <!-- CSS Files -->
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../assets/css/atlantis.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/atlantis.min.css" />
 
     <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link rel="stylesheet" href="../assets/css/demo.css" />
+    <link rel="stylesheet" href="css/demo.css" />
   </head>
   <body data-background-color="dark">
     <div class="wrapper">
@@ -56,7 +59,7 @@
             </span>
           </button>
           <button class="topbar-toggler more">
-            <i class="icon-options-vertical"></i>
+            <i class="icon-choices-vertical"></i>
           </button>
           <div class="nav-toggle">
             <button class="btn btn-toggle toggle-sidebar">
@@ -110,7 +113,7 @@
                 >
                   <div class="avatar-sm">
                     <img
-                      src="../assets/img/avatar.png"
+                      src="img/avatar.png"
                       alt="..."
                       class="avatar-img rounded-circle"
                     />
@@ -122,7 +125,7 @@
                       <div class="user-box">
                         <div class="avatar-lg">
                           <img
-                            src="../assets/img/avatar.png"
+                            src="img/avatar.png"
                             alt="image profile"
                             class="avatar-img rounded"
                           />
@@ -146,7 +149,7 @@
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="#">Account Setting</a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="logout.html">Logout</a>
+                      <a class="dropdown-item" href="/logout">Logout</a>
                     </li>
                   </div>
                 </ul>
@@ -164,7 +167,7 @@
             <div class="user">
               <div class="avatar-sm float-left mr-2">
                 <img
-                  src="../assets/img/avatar.png"
+                  src="img/avatar.png"
                   alt="..."
                   class="avatar-img rounded-circle"
                 />
@@ -217,31 +220,31 @@
                 <h4 class="text-section">Actions</h4>
               </li>
               <li class="nav-item">
-                <a href="courses.html">
+                <a href="/courses">
                   <i class="fas fa-file-word"></i>
                   <p>Courses</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="students.html">
+                <a href="/students">
                   <i class="fas fa-users"></i>
                   <p>Manage Students</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="question_bank.html">
+                <a href="/questionBbank">
                   <i class="fas fa-book"></i>
                   <p>Question Bank</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="add_questions.html">
+                <a href="/createTest">
                   <i class="fas fa-pen-square"></i>
                   <p>Add Tests</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="results.html">
+                <a href="/results">
                   <i class="fas fa-file-word"></i>
                   <p>View Results</p>
                 </a>
@@ -693,40 +696,40 @@
       <!-- End Custom template -->
     </div>
     <!--   Core JS Files   -->
-    <script src="../assets/js/core/jquery.3.2.1.min.js"></script>
-    <script src="../assets/js/core/popper.min.js"></script>
-    <script src="../assets/js/core/bootstrap.min.js"></script>
+    <script src="js/core/jquery.3.2.1.min.js"></script>
+    <script src="js/core/popper.min.js"></script>
+    <script src="js/core/bootstrap.min.js"></script>
 
     <!-- jQuery UI -->
-    <script src="../assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
-    <script src="../assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+    <script src="js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+    <script src="js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
 
     <!-- jQuery Scrollbar -->
-    <script src="../assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+    <script src="js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
 
     <!-- Chart JS -->
-    <script src="../assets/js/plugin/chart.js/chart.min.js"></script>
+    <script src="js/plugin/chart.js/chart.min.js"></script>
 
     <!-- jQuery Sparkline -->
-    <script src="../assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
+    <script src="js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
 
     <!-- Chart Circle -->
-    <script src="../assets/js/plugin/chart-circle/circles.min.js"></script>
+    <script src="js/plugin/chart-circle/circles.min.js"></script>
 
     <!-- Datatables -->
-    <script src="../assets/js/plugin/datatables/datatables.min.js"></script>
+    <script src="js/plugin/datatables/datatables.min.js"></script>
 
     <!-- Bootstrap Notify -->
-    <script src="../assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+    <script src="js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
 
     <!-- jQuery Vector Maps -->
-    <script src="../assets/js/plugin/jqvmap/jquery.vmap.min.js"></script>
-    <script src="../assets/js/plugin/jqvmap/maps/jquery.vmap.world.js"></script>
+    <script src="js/plugin/jqvmap/maps/jquery.vmap.world.js"></script>
+    <script src="js/plugin/jqvmap/jquery.vmap.min.js"></script>
 
     <!-- Sweet Alert -->
-    <script src="../assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+    <script src="js/plugin/sweetalert/sweetalert.min.js"></script>
 
     <!-- Atlantis JS -->
-    <script src="../assets/js/atlantis.min.js"></script>
+    <script src="js/atlantis.min.js"></script>
   </body>
 </html>

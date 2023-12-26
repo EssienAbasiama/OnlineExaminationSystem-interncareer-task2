@@ -26,7 +26,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 //    Is User Verified?
     @Query(value = "SELECT verified FROM users WHERE email = :email", nativeQuery = true)
-    int isVerified(@Param("email")String email);
+    boolean isVerified(@Param("email")String email);
 
 //   Get User Detail
     @Query(value = "SELECT * FROM users WHERE email = :email", nativeQuery = true)

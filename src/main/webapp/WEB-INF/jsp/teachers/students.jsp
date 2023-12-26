@@ -58,7 +58,7 @@
             </span>
           </button>
           <button class="topbar-toggler more">
-            <i class="icon-options-vertical"></i>
+            <i class="icon-choices-vertical"></i>
           </button>
           <div class="nav-toggle">
             <button class="btn btn-toggle toggle-sidebar">

@@ -4,7 +4,10 @@ import com.interncareer.oexam.helper.HTML;
 import com.interncareer.oexam.helper.Token;
 import com.interncareer.oexam.mailMessenger.MailMessenger;
 import com.interncareer.oexam.models.Role;
+import com.interncareer.oexam.models.Student;
+import com.interncareer.oexam.models.Teacher;
 import com.interncareer.oexam.models.User;
+import com.interncareer.oexam.repository.StudentRepository;
 import com.interncareer.oexam.repository.UserRepository;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Random;
 
 @Controller
@@ -27,6 +31,8 @@ public class RegisterController {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private StudentRepository studentRepository;
 
     @GetMapping("/register")
     public ModelAndView getRegister() {
@@ -67,6 +73,7 @@ public class RegisterController {
         // Set the user role based on the selected option
         if ("Student".equals(role)) {
             user.setRole(Role.STUDENT);
+
         } else if ("Teacher".equals(role)) {
             user.setRole(Role.TEACHER);
         } else {
@@ -94,8 +101,23 @@ public class RegisterController {
         user.setPassword(hashed_password);
         user.setCreated_at(LocalDateTime.now());
         // TODO: REGISTER USER
-        userRepository.save(user);
+        User savedUser = userRepository.save(user);
+        if ("Student".equals(user.getRole())) {
+            Student student = new Student();
+            student.setTest(new ArrayList<>());
+            student.setUser(savedUser);
+            studentRepository.save(student);
 
+        } else if ("Teacher".equals(user.getRole())) {
+            Teacher teacher = new Teacher();
+            teacher.setTests(new ArrayList<>());
+            teacher.setStudents(new ArrayList<>());
+            teacher.setUser(savedUser);
+        } else {
+            // Handle the case when the role is not recognized
+            registrationPage.addObject("error", "Invalid User ROle");
+            return registrationPage;
+        }
         // TODO: SEND EMAIL NOTIFICATION
         MailMessenger.htmlEmailMessenger("abasiama@gmail.com", user.getEmail(), "Verify Account", emailBody);
         // TODO: Return to Register Page

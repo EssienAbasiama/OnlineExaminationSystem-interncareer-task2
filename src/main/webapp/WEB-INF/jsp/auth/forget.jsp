@@ -48,7 +48,7 @@
             <h2 class="title">Forget Password</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" name="email" placeholder="Email" />
+              <input type="text" name="email" placeholder="Email" required/>
             </div>
             <input type="submit" name="submit" value="Send" class="btn solid" />
             <p class="social-text">Or Sign in with social platforms</p>

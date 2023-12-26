@@ -77,11 +77,11 @@
 
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" name="email" placeholder="Email" />
+              <input type="text" name="email" placeholder="Email" required/>
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" name="Password" placeholder="Password" />
+              <input type="password" name="password" placeholder="Password" required/>
             </div>
             <div class="Forget-Pass">
               <a href="/forgot" class="Forget">Forget Password ?</a>

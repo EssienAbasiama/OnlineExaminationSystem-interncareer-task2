@@ -8,29 +8,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/app")
 public class AppController {
 
     User user;
-    @GetMapping("/teacher/dashboard")
+    @GetMapping("/teacherDashboard")
     public ModelAndView getTeacherDashboard(HttpSession session) {
-        ModelAndView getDashBoardPage = new ModelAndView("teacher/dashboard");
+        ModelAndView getTeacherDashBoardPage = new ModelAndView("teachers/index");
 //        Get LoggedIn User Details
         User user = (User)session.getAttribute("user");
-//        Get Account of LoggedIn User
 
 //        Set Objects
-//        getDashBoardPage.addObject("userAccounts", getUserAccounts);
-//        getDashBoardPage.addObject("totalBalance", totalAccountBalance);
-
-        return getDashBoardPage;
-
+        getTeacherDashBoardPage.addObject("Name", user.getFirst_name());
+        getTeacherDashBoardPage.addObject("email", user.getFirst_name());
+        return getTeacherDashBoardPage;
     }
-
 
     @GetMapping("/student/dashboard")
     public ModelAndView getStudentDashboard(HttpSession session){
-        ModelAndView getDashBoardPage = new ModelAndView("student/dashboard");
+        ModelAndView getDashBoardPage = new ModelAndView("student/index");
 //        Get LoggedIn User Details
         User user = (User)session.getAttribute("user");
         return getDashBoardPage;

@@ -28,8 +28,8 @@ public class IndexController {
 
     @GetMapping("/error")
     public ModelAndView getError() {
-        ModelAndView getErrorPage = new ModelAndView("error/error500");
-        System.out.println("In Error Page Controller");
+        ModelAndView getErrorPage = new ModelAndView("error/error");
+        System.out.println("Error Page Controller");
         getErrorPage.addObject("PageTitle","Error");
         return getErrorPage;
     }
@@ -44,8 +44,4 @@ public class IndexController {
         getVerifyPage.addObject("PageTitle","login");
         return getVerifyPage;
     }
-
-
-
 }
-

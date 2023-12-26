@@ -1,3 +1,7 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%--<%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>--%>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,8 +11,8 @@
       src="https://kit.fontawesome.com/64d58efce2.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="style.css" />
-    <title>Sign in & Sign up Form</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Reset Password</title>
     <style>
       .alert {
         padding: 1rem;
@@ -57,17 +61,18 @@
             </div>
           </c:if>
           <form:form method="POST" class="sign-up-form">
-            <h2 class="title">Sign up</h2>
+            <h2 class="title">Reset Password</h2>
 
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" name="Password" placeholder="Password" />
+              <input type="password" name="password" placeholder="Password" />
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
+
               <input
                 type="password"
-                name="Conf-Password"
+                name="confirm_password"
                 placeholder="Confirm Password"
               />
             </div>

@@ -16,8 +16,9 @@ public class AppConfig extends WebMvcConfigurationSupport {
 
     @Override
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("css/**", "img/**", "js/**")
-                .addResourceLocations("classpath:/static/css/", "classpath:/static/js/", "classpath:/static/img/");
+        registry.addResourceHandler("css/**", "img/**", "js/**","fonts/**")
+                .addResourceLocations("classpath:/static/css/", "classpath:/static/js/", "classpath:/static/img/",
+                        "classpath:/static/fonts");
         // Add a similar line for the favicon
         registry.addResourceHandler("/favicon.ico")
                 .addResourceLocations("classpath:/static/");

@@ -1,3 +1,7 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+<%--<%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>--%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,10 +11,10 @@
       content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
       name="viewport"
     />
-    <link rel="icon" href="../assets/img/icon.ico" type="image/x-icon" />
+    <link rel="icon" href="img/icon.ico" type="image/x-icon" />
 
     <!-- Fonts and icons -->
-    <script src="../assets/js/webfont.min.js"></script>
+    <script src="js/webfont.min.js"></script>
     <script>
       WebFont.load({
         google: { families: ["Lato:300,400,700,900"] },
@@ -22,7 +26,7 @@
             "Font Awesome 5 Brands",
             "simple-line-icons",
           ],
-          urls: ["../assets/css/fonts.min.css"],
+          urls: ["css/fonts.min.css"],
         },
         active: function () {
           sessionStorage.fonts = true;
@@ -31,11 +35,11 @@
     </script>
 
     <!-- CSS Files -->
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../assets/css/atlantis.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/atlantis.min.css" />
 
     <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link rel="stylesheet" href="../assets/css/demo.css" />
+    <link rel="stylesheet" href="css/demo.css" />
   </head>
   <body data-background-color="dark">
     <div class="wrapper">
@@ -58,7 +62,7 @@
             </span>
           </button>
           <button class="topbar-toggler more">
-            <i class="icon-options-vertical"></i>
+            <i class="icon-choices-vertical"></i>
           </button>
           <div class="nav-toggle">
             <button class="btn btn-toggle toggle-sidebar">
@@ -112,7 +116,7 @@
                 >
                   <div class="avatar-sm">
                     <img
-                      src="../assets/img/avatar.png"
+                      src="img/avatar.png"
                       alt="..."
                       class="avatar-img rounded-circle"
                     />
@@ -124,7 +128,7 @@
                       <div class="user-box">
                         <div class="avatar-lg">
                           <img
-                            src="../assets/img/avatar.png"
+                            src="img/avatar.png"
                             alt="image profile"
                             class="avatar-img rounded"
                           />
@@ -166,7 +170,7 @@
             <div class="user">
               <div class="avatar-sm float-left mr-2">
                 <img
-                  src="../assets/img/avatar.png"
+                  src="img/avatar.png"
                   alt="..."
                   class="avatar-img rounded-circle"
                 />
@@ -295,29 +299,23 @@
                       <span style="margin-left: 30%; font-size: 30px"
                         ><b>Enter Test Details</b></span
                       ><br /><br />
-
                       <div class="col-md-6" style="margin-left: 23%">
-                        <form
-                          class="form-horizontal title1"
-                          name="form"
-                          action="update.php"
-                          method="POST"
-                        >
+                        <form:form class="form-horizontal title1" action="/createTest" method="POST" modelAttribute="createTest">
                           <fieldset>
                             <div class="form-group">
                               <label
                                 class="col-md-12 control-label"
-                                for="name"
+                                for="test_course_title"
                               ></label>
                               <div class="col-md-12">
                                 <input
-                                  id="name"
-                                  name="name"
+                                  id="test_course_title"
+                                  name="test_course_title"
                                   placeholder="Enter Test title"
                                   class="form-control input-md"
                                   type="text"
                                   required="true"
-                                />
+                                 path="test_course_title"/>
                               </div>
                             </div>
                             <div class="form-group">
@@ -331,21 +329,25 @@
                                   id="cunit"
                                   class="form-control"
                                   required="true"
+                                  path="cunit"
                                 >
                                   <option value="">--Course Unit--</option>
-                                  <?php echo load_courseunit($con); ?>
+                                  <c:forEach var="cunit" items="${cunitValues}">
+                                    <option value="${cunit}">${cunit}</option>
+                                  </c:forEach>
                                 </select>
                               </div>
                             </div>
                             <div class="form-group">
                               <label
                                 class="col-md-12 control-label"
-                                for="total"
+                                for="numberOfQuestions"
                               ></label>
                               <div class="col-md-12">
                                 <input
-                                  id="total"
-                                  name="total"
+                                  id="numberOfQuestions"
+                                  name="numberOfQuestions"
+                                  path="numberOfQuestions"
                                   placeholder="Enter total number of questions"
                                   class="form-control input-md"
                                   type="number"
@@ -356,47 +358,14 @@
                             <div class="form-group">
                               <label
                                 class="col-md-12 control-label"
-                                for="right"
+                                for="markPerQuestion"
                               ></label>
                               <div class="col-md-12">
                                 <input
-                                  id="right"
-                                  name="right"
-                                  placeholder="Enter marks on right answer"
-                                  class="form-control input-md"
-                                  min="0"
-                                  type="number"
-                                  required="true"
-                                />
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label
-                                class="col-md-12 control-label"
-                                for="wrong"
-                              ></label>
-                              <div class="col-md-12">
-                                <input
-                                  id="wrong"
-                                  name="wrong"
-                                  placeholder="Enter minus marks on wrong answer without sign"
-                                  class="form-control input-md"
-                                  min="0"
-                                  type="number"
-                                  required="true"
-                                />
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label
-                                class="col-md-12 control-label"
-                                for="time"
-                              ></label>
-                              <div class="col-md-12">
-                                <input
-                                  id="time"
-                                  name="time"
-                                  placeholder="Enter time limit for test in minute"
+                                  id="markPerQuestion"
+                                  name="markPerQuestion"
+                                  path="markPerQuestion"
+                                  placeholder="Marks Per Question"
                                   class="form-control input-md"
                                   min="1"
                                   type="number"
@@ -404,25 +373,39 @@
                                 />
                               </div>
                             </div>
-
                             <div class="form-group">
                               <label
                                 class="col-md-12 control-label"
-                                for=""
+                                for="time_duration"
                               ></label>
                               <div class="col-md-12">
                                 <input
+                                        path="time_duration"
+                                  id="time_duration"
+                                  name="time_duration"
+                                  placeholder="Enter Test Time Limit in Minutes"
+                                  class="form-control input-md"
+                                  min="5"
+                                  type="number"
+                                  required="true"
+                                />
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <div class="col-md-12">
+                                <input
+                                        path="submit"
                                   type="submit"
                                   style="margin-left: 45%"
                                   class="btn btn-primary"
                                   value="Submit"
                                   name="add_test"
-                                  class="btn btn-primary"
                                 />
                               </div>
                             </div>
                           </fieldset>
-                        </form>
+                        </form:form>
                       </div>
                     </div>
                   </div>
@@ -679,43 +662,43 @@
       <!-- End Custom template -->
     </div>
     <!--   Core JS Files   -->
-    <script src="../assets/js/core/jquery.3.2.1.min.js"></script>
-    <script src="../assets/js/core/popper.min.js"></script>
-    <script src="../assets/js/core/bootstrap.min.js"></script>
+    <script src="js/core/jquery.3.2.1.min.js"></script>
+    <script src="js/core/popper.min.js"></script>
+    <script src="js/core/bootstrap.min.js"></script>
 
     <!-- jQuery UI -->
-    <script src="../assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
-    <script src="../assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+    <script src="js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+    <script src="js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
 
     <!-- jQuery Scrollbar -->
-    <script src="../assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+    <script src="js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
 
     <!-- Chart JS -->
-    <script src="../assets/js/plugin/chart.js/chart.min.js"></script>
+    <script src="js/plugin/chart.js/chart.min.js"></script>
 
     <!-- jQuery Sparkline -->
-    <script src="../assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
+    <script src="js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
 
     <!-- Chart Circle -->
-    <script src="../assets/js/plugin/chart-circle/circles.min.js"></script>
+    <script src="js/plugin/chart-circle/circles.min.js"></script>
 
     <!-- Datatables -->
-    <script src="../assets/js/plugin/datatables/datatables.min.js"></script>
+    <script src="js/plugin/datatables/datatables.min.js"></script>
 
     <!-- Bootstrap Notify -->
-    <script src="../assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+    <script src="js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
 
     <!-- jQuery Vector Maps -->
-    <script src="../assets/js/plugin/jqvmap/jquery.vmap.min.js"></script>
-    <script src="../assets/js/plugin/jqvmap/maps/jquery.vmap.world.js"></script>
+    <script src="js/plugin/jqvmap/jquery.vmap.min.js"></script>
+    <script src="js/plugin/jqvmap/maps/jquery.vmap.world.js"></script>
 
     <!-- Sweet Alert -->
-    <script src="../assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+    <script src="js/plugin/sweetalert/sweetalert.min.js"></script>
 
     <!-- Atlantis JS -->
-    <script src="../assets/js/atlantis.min.js"></script>
+    <script src="js/atlantis.min.js"></script>
 
     <!-- Atlantis DEMO methods, don't include it in your project! -->
-    <script src="../assets/js/setting-demo.js"></script>
+    <script src="js/setting-demo.js"></script>
   </body>
 </html>

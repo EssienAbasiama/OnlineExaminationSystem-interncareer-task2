@@ -97,16 +97,16 @@
                     <h2 class="title">Sign up</h2>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" name="first_name" placeholder="FirstName" value="" />
+                        <input type="text" name="first_name" placeholder="FirstName" value="" required/>
                     </div>
                     <div class="input-field">
                         <i class="fas fa-envelope"></i>
-                        <input type="email" name="email" placeholder="Email" value=""/>
+                        <input type="email" name="email" placeholder="Email" value="" required/>
                         <form:errors path="email" class="text-white bg-danger"/>
                     </div>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <select class="form-select" name="role" aria-label="user label">
+                        <select class="form-select" name="role" aria-label="user label" required>
                             <option selected>Select Role</option>
                             <option value="Student">Student</option>
                             <option value="Teacher">Teacher</option>
@@ -114,12 +114,12 @@
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="password" name="password" placeholder="Password" />
+                        <input type="password" name="password" placeholder="Password" required/>
                         <form:errors path="password" class="text-white bg-danger"/>
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="password" name="confirm_password" placeholder="Confirm Password" />
+                        <input type="password" name="confirm_password" placeholder="Confirm Password" required/>
                     </div>
 
                     <input type="submit" name="submit" class="btn" value="Sign up" />
